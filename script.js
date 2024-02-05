@@ -6,9 +6,9 @@ let computerScore = 0;
 let play = true;
 let winDisplay = document.querySelector(".winner");
 let resetButton = document.querySelector(".winner button");
-// window.alert(
-//   "To win you have to score 10 and after winning reload the page to play again"
-// );
+window.alert(
+  "To win you have to score 10 and a pop up will be shown and there will be a reset button !!"
+);
 document.querySelectorAll(".element").forEach(function (item) {
   item.addEventListener("click", function () {
     if (play) {
@@ -23,7 +23,7 @@ document.querySelectorAll(".element").forEach(function (item) {
       } else {
         computerPoint.textContent = ++computerScore;
       }
-      if (userScore == 5 || computerScore == 5) {
+      if (userScore == 10 || computerScore == 10) {
         play = false;
         winDisplay.style.opacity = "1";
         winDisplay.style.pointerEvents = "all";
