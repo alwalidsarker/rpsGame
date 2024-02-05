@@ -1,59 +1,62 @@
-let playGame = true;
+let displayMove = document.querySelector(".displayMove");
+let userPoint = document.querySelector(".user p");
+let computerPoint = document.querySelector(".computer p");
 let userScore = 0;
 let computerScore = 0;
-let computerChoose = "";
-let rockpaperscissor = document.querySelectorAll(".container div");
-let scoreComputer = document.querySelector(".score .computer p:nth-child(2)");
-let scoreUser = document.querySelector(".score .user p:nth-child(2)");
-let displayMove = document.querySelector(".displayMove");
-let displayWinner = document.querySelector(".displayWinner");
-let computerScoreDislay = document.querySelector(
-  ".score .computer p:nth-child(2)"
-);
-let userScoreDislay = document.querySelector(".score .user p:nth-child(2)");
-//upper ones are variables
-function computerMove() {
-  let mathFunction = Math.floor(Math.random() * 3);
-  if (mathFunction == 0) {
-    computerChoose = "rock";
-  } else if (mathFunction == 1) {
-    computerChoose = "paper";
+let play = true;
+let winDisplay = document.querySelector(".winner");
+let resetButton = document.querySelector(".winner button");
+// window.alert(
+//   "To win you have to score 10 and after winning reload the page to play again"
+// );
+document.querySelectorAll(".element").forEach(function (item) {
+  item.addEventListener("click", function () {
+    if (play) {
+      let userChoice = this.id;
+      let computerChoice = computerPicked();
+      let result = decision(userChoice, computerChoice);
+      displayMove.textContent = `Computer chose ${computerChoice}`;
+      if (result == "draw") {
+        // Handle draw if needed
+      } else if (result == "win") {
+        userPoint.textContent = ++userScore;
+      } else {
+        computerPoint.textContent = ++computerScore;
+      }
+      if (userScore == 5 || computerScore == 5) {
+        play = false;
+        winDisplay.style.opacity = "1";
+        winDisplay.style.pointerEvents = "all";
+        resetButton.addEventListener("click", () => {
+          winDisplay.style.opacity = "0";
+          winDisplay.style.pointerEvents = "none";
+          play = true;
+          userScore = 0;
+          userPoint.textContent = "0";
+          computerScore = 0;
+          computerPoint.textContent = "0";
+        });
+      }
+    }
+  });
+});
+
+function computerPicked() {
+  let gameArray = ["rock", "paper", "scissor"];
+  let math = Math.floor(Math.random() * 3);
+  return gameArray[math];
+}
+
+function decision(userChoice, computerChoice) {
+  if (userChoice == computerChoice) {
+    return "draw";
+  } else if (
+    (userChoice == "rock" && computerChoice == "scissor") ||
+    (userChoice == "paper" && computerChoice == "rock") ||
+    (userChoice == "scissor" && computerChoice == "paper")
+  ) {
+    return "win";
   } else {
-    computerChoose = "scissor";
+    return "lose";
   }
 }
-function playGameTrue(){
-  rockpaperscissor.forEach(function (element) {
-    element.addEventListener("click", function () {
-      computerMove();
-      if (computerChoose == "rock" && this.classList[0] == "paper") {
-        userScoreDislay.textContent = ++userScore;
-        displayMove.textContent = "Computer Choosed Rock";
-      } else if (computerChoose == "rock" && this.classList[0] == "rock") {
-        displayMove.textContent = "Computer Choosed Rock";
-      } else if (computerChoose == "rock" && this.classList[0] == "scissor") {
-        computerScoreDislay.textContent = ++computerScore;
-        displayMove.textContent = "Computer Choosed Rock";
-      } else if (computerChoose == "paper" && this.classList[0] == "paper") {
-        displayMove.textContent = "Computer Choosed Paper";
-      } else if (computerChoose == "paper" && this.classList[0] == "rock") {
-        computerScoreDislay.textContent = ++computerScore;
-        displayMove.textContent = "Computer Choosed Paper";
-      } else if (computerChoose == "paper" && this.classList[0] == "scissor") {
-        userScoreDislay.textContent = ++userScore;
-        displayMove.textContent = "Computer Choosed Paper";
-      } else if (computerChoose == "scissor" && this.classList[0] == "paper") {
-        computerScoreDislay.textContent = ++computerScore;
-        displayMove.textContent = "Computer Choosed Scissor";
-      } else if (computerChoose == "scissor" && this.classList[0] == "rock") {
-        userScoreDislay.textContent = ++userScore;
-        displayMove.textContent = "Computer Choosed Scissor";
-      } else {
-        displayMove.textContent = "Computer Choosed Scissor";
-      };
-    });
-  });
-}
-if(playGame == true){
-  playGameTrue();
-};

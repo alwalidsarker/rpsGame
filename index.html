@@ -1,33 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>RockPaperScissor</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-</head>
-<body>
-  <h1>RockPaperScissor Game</h1>
-  <h3>You Have To Score 20 Scores To Win</h3>
-  <div class="container">
-    <div class="rock"><i class="fa-solid fa-hand-back-fist"></i></div>
-    <div class="paper"><i class="fa-solid fa-hand"></i></div>
-    <div class="scissor"><i class="fa-solid fa-scissors"></i></div>
-  </div>
-  <div class="score">
-    <div class="computer">
-      <p>Computer</p>
-      <p>0</p>
-    </div>
-    <div class="user">
-      <p>User</p>
-      <p>0</p>
-    </div>
-  </div>
-  <div class="displayMove">Computer Choosed Nothing</div>
-  <div class="displayWinner">Winner is </div>
-  <!-- link of javascript is here -->
-  <script src="script.js"></script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RockPaperScissor</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body style="position: relative">
+    <main>
+      <div class="winner">
+        Congrats You have WON
+        <button>reset game</button>
+      </div>
+      <h1>rock paper scissor</h1>
+      <!-- container is here -->
+      <div class="container">
+        <!-- gameboard is here -->
+        <div class="gameBoard">
+          <div class="element" id="rock">
+            <i class="fa-solid fa-hand-back-fist"></i>
+          </div>
+          <div class="element" id="paper">
+            <i class="fa-solid fa-hand"></i>
+          </div>
+          <div class="element" id="scissor">
+            <i class="fa-solid fa-scissors"></i>
+          </div>
+        </div>
+        <!-- computer move is here -->
+        <div class="displayMove">you must choose first</div>
+      </div>
+      <!-- display score section is here -->
+      <div class="displayScore">
+        <div class="user">
+          <h1>user</h1>
+          <p>0</p>
+        </div>
+        <div class="computer">
+          <h1>computer</h1>
+          <p>0</p>
+        </div>
+      </div>
+    </main>
+    <!-- link of javascript is here -->
+    <script src="script.js"></script>
+  </body>
 </html>
